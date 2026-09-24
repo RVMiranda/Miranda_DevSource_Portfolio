@@ -1,0 +1,87 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { locales, site, type Locale } from "../../config";
+import { copy } from "../../i18n";
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Locale;
+const t = copy[lang];
+---
+
+<Layout lang={lang} title={t.privacy} path="privacy/">
+  <article class="wrap privacy-page">
+    <p class="eyebrow">MIRANDA DEVSOURCE</p>
+    <h1>{t.privacy}</h1>
+    {lang === "es" ? (
+      <>
+        <h2>Tu consulta y tus datos</h2>
+        <p>
+          Rafael Valentín Miranda Cruz, en Mérida, Yucatán, México, utiliza el
+          nombre, correo, servicio seleccionado y mensaje que compartas para
+          responder a tu consulta y conversar sobre posibles servicios. No
+          envíes contraseñas, información financiera ni datos sensibles.
+        </p>
+        <h2>Servicios que intervienen</h2>
+        <p>
+          Cuando el formulario está habilitado, Formspree procesa el envío y lo
+          entrega por correo. El sitio se aloja en Cloudflare, que puede
+          procesar datos técnicos de conexión. Si eliges WhatsApp o correo, tu
+          conversación se gestiona mediante esos servicios y sus propias
+          políticas.
+        </p>
+        <h2>Preferencias y conservación</h2>
+        <p>
+          Este sitio no incorpora analítica ni publicidad. Guarda localmente tu
+          preferencia de tema; puedes eliminarla borrando los datos del sitio en
+          tu navegador. Las consultas se conservan mientras sean necesarias para
+          atender la conversación y cumplir las obligaciones aplicables.
+        </p>
+        <h2>Contacto y solicitudes</h2>
+        <p>
+          Puedes solicitar información, corrección o eliminación de los datos de
+          tu consulta escribiendo al correo indicado abajo. No se usan tus datos
+          para listas de marketing.
+        </p>
+      </>
+    ) : (
+      <>
+        <h2>Your inquiry and your data</h2>
+        <p>
+          Rafael Valentín Miranda Cruz, based in Mérida, Yucatán, Mexico, uses
+          the name, email, selected service and message you share to respond to
+          your inquiry and discuss potential services. Do not send passwords,
+          financial information or sensitive data.
+        </p>
+        <h2>Services involved</h2>
+        <p>
+          When the form is enabled, Formspree processes submissions and delivers
+          them by email. The website is hosted on Cloudflare, which may process
+          technical connection data. If you choose WhatsApp or email, those
+          services handle your conversation under their own policies.
+        </p>
+        <h2>Preferences and retention</h2>
+        <p>
+          This website has no analytics or advertising. It stores your theme
+          preference locally; you can remove it by clearing site data in your
+          browser. Inquiries are retained for as long as needed to address the
+          conversation and meet applicable obligations.
+        </p>
+        <h2>Contact and requests</h2>
+        <p>
+          You can request information, correction or deletion of your inquiry
+          data by emailing the address below. Your details are not used for
+          marketing lists.
+        </p>
+      </>
+    )}
+    <a class="text-link" href={`mailto:${site.email}`}>
+      {site.email} ↗
+    </a>
+    <p>
+      <a href="https://formspree.io/legal/privacy-policy/">Formspree</a> ·{" "}
+      <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a> ·{" "}
+      <a href="https://www.whatsapp.com/legal/privacy-policy">WhatsApp</a>
+    </p>
+  </article>
+</Layout>

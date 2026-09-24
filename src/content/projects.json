@@ -1,0 +1,83 @@
+[
+  {
+    "id": "operations",
+    "order": 1,
+    "year": "2025",
+    "tone": "blue",
+    "tech": ["Django", "Docker", "BPMN", "Scrum"],
+    "es": {
+      "title": "Una operación más conectada.",
+      "category": "SISTEMA DE GESTIÓN INTERNA",
+      "summary": "Inventarios, cotizaciones y seguimiento, conectados en un mismo flujo de trabajo.",
+      "challenge": "Una organización necesitaba una plataforma interna para conectar inventarios, cotizaciones y seguimiento operativo.",
+      "contribution": "Durante mis prácticas profesionales coordiné dos equipos técnicos, frontend y backend. Participé en el levantamiento de requerimientos, modelado BPMN y priorización del backlog, y desarrollé módulos centrales con Django.",
+      "solution": "Una plataforma con módulos de inventario, generación automatizada de cotizaciones y estados basados en tickets, en entornos Docker. El equipo trabajó mediante entregas iterativas con una adaptación de Scrum.",
+      "outcome": "El trabajo conectó interfaces, persistencia y lógica de negocio para mejorar el seguimiento administrativo de cotizaciones. El CV no establece una medición cuantitativa de esta mejora.",
+      "steps": ["Inventario", "Cotización", "Seguimiento"]
+    },
+    "en": {
+      "title": "A more connected operation.",
+      "category": "INTERNAL MANAGEMENT SYSTEM",
+      "summary": "Inventory, quotes and tracking, connected in a single workflow.",
+      "challenge": "An organization needed an internal platform connecting inventory, quotations and operational tracking.",
+      "contribution": "During my professional internship I coordinated two technical teams, frontend and backend. I contributed to requirements gathering, BPMN modeling and backlog prioritization, and developed core modules with Django.",
+      "solution": "A platform with inventory, automated quotation generation and ticket-based status workflows, in Docker environments. The team delivered iteratively using an adapted Scrum approach.",
+      "outcome": "The work connected interfaces, persistence and business logic to improve administrative quotation tracking. The CV does not provide a quantitative measurement of this improvement.",
+      "steps": ["Inventory", "Quotation", "Tracking"]
+    }
+  },
+  {
+    "id": "school",
+    "order": 2,
+    "year": "2025",
+    "tone": "cream",
+    "tech": ["Docker", "SSDLC", "On-premise"],
+    "es": {
+      "title": "Menos tareas. Más tiempo.",
+      "category": "ADMINISTRACIÓN ESCOLAR",
+      "summary": "De fichas físicas a un sistema de alumnos, grupos y cobranza de colegiaturas.",
+      "challenge": "El registro manual de pagos mediante fichas físicas tomaba aproximadamente cinco minutos por cobro y complicaba la administración escolar.",
+      "contribution": "Como consultor y desarrollador independiente, realicé el análisis de necesidades con la dirección y construí el sistema de punta a punta, aplicando principios de desarrollo seguro.",
+      "solution": "Tres módulos: Alumnos, Grupos y Colegiaturas. La arquitectura se empaquetó con Docker para un servidor local, manteniendo la operación incluso ante interrupciones de internet.",
+      "outcome": "Reducción de más del 80% del tiempo operativo de cobro y registro, según el CV, al sustituir las fichas físicas por un flujo automatizado de pocos segundos.",
+      "steps": ["Alumnos", "Grupos", "Colegiaturas"]
+    },
+    "en": {
+      "title": "Fewer tasks. More time.",
+      "category": "SCHOOL ADMINISTRATION",
+      "summary": "From paper records to a student, class and tuition management system.",
+      "challenge": "Manual payment recording using paper cards took approximately five minutes per payment and made school administration more difficult.",
+      "contribution": "As an independent consultant and developer, I analyzed needs with school management and built the system end to end, applying secure development principles.",
+      "solution": "Three modules: Students, Classes and Tuition. The architecture was packaged with Docker for a local server, allowing operations to continue during internet outages.",
+      "outcome": "More than 80% less operational time for payment collection and recording, as reported in the CV, by replacing paper cards with an automated workflow taking seconds.",
+      "steps": ["Students", "Classes", "Tuition"]
+    }
+  },
+  {
+    "id": "producers",
+    "order": 3,
+    "year": "2023",
+    "tone": "plum",
+    "tech": ["Laravel", "APIs REST", "MVC"],
+    "es": {
+      "title": "Conectar para crecer.",
+      "category": "PLATAFORMA DE VINCULACIÓN",
+      "summary": "Herramientas web para la vinculación de productores y comerciantes locales.",
+      "challenge": "Un proyecto universitario necesitaba una plataforma de gestión interna orientada a vincular productores y comerciantes de Yucatán.",
+      "contribution": "Durante mi servicio social colaboré en el desarrollo frontend, implementé interfaces responsivas y participé en integración de servicios, controladores, modelos y migraciones con Laravel.",
+      "solution": "Interfaces adaptables conectadas con servicios REST mediante solicitudes asíncronas, dentro de una arquitectura MVC. Mi participación también incluyó corrección de incidencias técnicas.",
+      "outcome": "Contribuí a una experiencia de uso consistente y accesible para la plataforma. Se presenta mi aportación al equipo, no la autoría completa del producto.",
+      "steps": ["Productores", "Plataforma", "Comerciantes"]
+    },
+    "en": {
+      "title": "Connect to grow.",
+      "category": "PRODUCER CONNECTION PLATFORM",
+      "summary": "Web tools to connect local producers and merchants.",
+      "challenge": "A university project needed an internal management platform aimed at connecting producers and merchants in Yucatán.",
+      "contribution": "During community service I collaborated on frontend development, implemented responsive interfaces and contributed to service integration, controllers, models and migrations with Laravel.",
+      "solution": "Responsive interfaces connected to REST services through asynchronous requests within an MVC architecture. My contribution also included fixing technical issues.",
+      "outcome": "I contributed to a consistent and accessible platform experience. This case describes my role within the team, not sole authorship of the product.",
+      "steps": ["Producers", "Platform", "Merchants"]
+    }
+  }
+]

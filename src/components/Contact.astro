@@ -1,0 +1,116 @@
+---
+import { site, whatsapp, formEndpoint, type Locale } from "../config";
+import { copy } from "../i18n";
+const { lang } = Astro.props as { lang: Locale };
+const t = copy[lang];
+---
+
+<section id="contact" class="contact-section wrap section">
+  <p class="eyebrow">{t.contactLabel}</p>
+  <div class="contact-grid">
+    <div>
+      <h2>{t.contactTitle}</h2>
+      <p class="lede">{t.contactIntro}</p>
+      <div class="contact-links">
+        <a href={`mailto:${site.email}`}>
+          {site.email} <span aria-hidden="true">↗</span>
+        </a>
+        <a href={whatsapp(lang)}>
+          {t.wa} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+      <p class="micro">Mérida, Yucatán · México</p>
+    </div>
+    <div class="contact-panel">
+      {formEndpoint ? (
+        <form action={formEndpoint} method="POST" data-contact data-lang={lang}>
+          <div class="form-row">
+            <div class="field">
+              <label for="name">{t.name}</label>
+              <input
+                id="name"
+                name="name"
+                autocomplete="name"
+                required
+                maxlength="120"
+                aria-describedby="name-error"
+              />
+              <small id="name-error" class="field-error"></small>
+            </div>
+            <div class="field">
+              <label for="email">{t.email}</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                maxlength="254"
+                aria-describedby="email-error"
+              />
+              <small id="email-error" class="field-error"></small>
+            </div>
+          </div>
+          <div class="field">
+            <label for="service">{t.service}</label>
+            <select id="service" name="service">
+              <option value="">{t.select}</option>
+              {t.services.map((s) => (
+                <option>{s.name}</option>
+              ))}
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">{t.message}</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="4"
+              maxlength="5000"
+              aria-describedby="message-error"
+            ></textarea>
+            <small id="message-error" class="field-error"></small>
+          </div>
+          <div class="honeypot" aria-hidden="true">
+            <label for="company-url">Website</label>
+            <input
+              id="company-url"
+              name="_gotcha"
+              tabindex="-1"
+              autocomplete="off"
+            />
+          </div>
+          <input type="hidden" name="language" value={lang} />
+          <p class="micro">
+            {t.privacyNote} <a href={`/${lang}/privacy/`}>{t.privacy}</a>
+          </p>
+          <button class="button" type="submit">
+            {t.send}
+            <span aria-hidden="true">↗</span>
+          </button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      ) : (
+        <div class="direct-contact">
+          <span class="contact-spark" aria-hidden="true">
+            ✳
+          </span>
+          <h3>{t.direct}</h3>
+          <a class="button" href={`mailto:${site.email}`}>
+            {t.mail} <span aria-hidden="true">↗</span>
+          </a>
+          <a class="button outline" href={whatsapp(lang)}>
+            {t.wa} <span aria-hidden="true">↗</span>
+          </a>
+          <p class="micro">
+            {t.privacyNote} <a href={`/${lang}/privacy/`}>{t.privacy}</a>
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+<script>
+  import "../scripts/contact";
+</script>

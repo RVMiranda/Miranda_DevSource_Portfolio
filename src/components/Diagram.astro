@@ -1,0 +1,35 @@
+---
+interface Props {
+  steps: string[];
+  tone: string;
+  label: string;
+  number?: string;
+}
+const { steps, tone, label, number = "01" } = Astro.props;
+---
+
+<div
+  class:list={["diagram", tone]}
+  role="img"
+  aria-label={`${label}: ${steps.join(" → ")}`}
+>
+  <div class="diagram-top">
+    <span>MD / {number}</span>
+    <span aria-hidden="true">↗</span>
+  </div>
+  <div class="flow" aria-hidden="true">
+    {steps.map((step, i) => (
+      <>
+        <div class:list={["flow-node", i === 1 && "center-node"]}>
+          <span class="node-symbol">{["▦", "⌘", "↗"][i]}</span>
+          <span>{step}</span>
+        </div>
+        {i < 2 && <span class="connector">···</span>}
+      </>
+    ))}
+  </div>
+  <div class="diagram-bottom">
+    <span>{label}</span>
+    <span aria-hidden="true">✳</span>
+  </div>
+</div>

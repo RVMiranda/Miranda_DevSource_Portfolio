@@ -1,0 +1,158 @@
+---
+import "../styles/global.css";
+import { site, type Locale } from "../config";
+import { copy } from "../i18n";
+interface Props {
+  lang: Locale;
+  title?: string;
+  description?: string;
+  path?: string;
+  noindex?: boolean;
+}
+const {
+  lang,
+  title = site.name,
+  description = copy[lang].intro,
+  path = "",
+  noindex = false,
+} = Astro.props;
+const t = copy[lang];
+const other = lang === "es" ? "en" : "es";
+const canonical = new URL(`/${lang}/${path}`, Astro.site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title === site.name ? `${site.name} — ${lang === 'es' ? 'Desarrollo de software' : 'Software development'}` : `${title} | ${site.name}`}</title>
+    <meta name="description" content={description} />
+    {noindex ? (
+      <meta name="robots" content="noindex" />
+    ) : (
+      <>
+        <link rel="canonical" href={canonical} />
+        {(["es", "en"] as const).map((l) => (
+          <link
+            rel="alternate"
+            hreflang={l}
+            href={new URL(`/${l}/${path}`, Astro.site)}
+          />
+        ))}
+        <link
+          rel="alternate"
+          hreflang="x-default"
+          href={new URL(`/es/${path}`, Astro.site)}
+        />
+      </>
+    )}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === "es" ? "es_MX" : "en_US"} />
+    <meta property="og:image" content={new URL("/social.png", Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      try {
+        const t = localStorage.getItem("theme");
+        if (t === "dark" || t === "light")
+          document.documentElement.dataset.theme = t;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">
+      {t.skip}
+    </a>
+    <header class="header wrap">
+      <a
+        class="brand"
+        href={`/${lang}/`}
+        aria-label={`Miranda DevSource — ${lang === "es" ? "Inicio" : "Home"}`}
+      >
+        <span class="monogram" aria-hidden="true">
+          m<span>↗</span>
+        </span>
+        <span>
+          miranda<span class="brand-second">devsource</span>
+        </span>
+      </a>
+      <nav
+        aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}
+      >
+        {t.nav.slice(0, 3).map((label, i) => (
+          <a href={`/${lang}/#${["services", "projects", "about"][i]}`}>
+            {label}
+          </a>
+        ))}
+      </nav>
+      <div class="header-tools">
+        <a
+          class="language"
+          href={`/${other}/${path}`}
+          lang={other}
+          hreflang={other}
+          aria-label={
+            other === "en"
+              ? "Read this page in English"
+              : "Leer esta página en español"
+          }
+        >
+          {other.toUpperCase()}
+          <span aria-hidden="true"> ↗</span>
+        </a>
+        <button
+          class="theme"
+          type="button"
+          aria-label={t.theme}
+          title={t.theme}
+          hidden
+        >
+          <span aria-hidden="true">◐</span>
+        </button>
+        <a class="button small header-contact" href={`/${lang}/#contact`}>
+          {t.nav[3]} <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+    <main id="main">
+      <slot />
+    </main>
+    <footer class="wrap footer">
+      <a class="brand" href={`/${lang}/`}>
+        miranda devsource<span aria-hidden="true">↗</span>
+      </a>
+      <p>{t.footer}</p>
+      <div>
+        <span>© {new Date().getFullYear()}</span>
+        <a href={`/${lang}/privacy/`}>{t.privacy}</a>
+        <a href={site.github}>GitHub ↗</a>
+        <a href={site.linkedin}>LinkedIn ↗</a>
+      </div>
+    </footer>
+    <script>
+      const button = document.querySelector<HTMLButtonElement>(".theme");
+      if (button) {
+        button.hidden = false;
+        button.addEventListener("click", () => {
+          const root = document.documentElement;
+          const current =
+            root.dataset.theme ||
+            (matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+          const next = current === "dark" ? "light" : "dark";
+          root.dataset.theme = next;
+          try {
+            localStorage.setItem("theme", next);
+          } catch {}
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,221 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Diagram from "../../components/Diagram.astro";
+import Contact from "../../components/Contact.astro";
+import { getCollection } from "astro:content";
+import { locales, site, type Locale } from "../../config";
+import { copy } from "../../i18n";
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const lang = Astro.params.lang as Locale;
+const t = copy[lang];
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const stack = [
+  ["Python", "Django", "TypeScript", "React", "Next.js", "PHP", "Laravel"],
+  ["PostgreSQL", "MySQL", "MariaDB", "SQLite"],
+  ["Docker", "Git", "GitHub", "Linux", "APIs REST", "Scrum", "BPMN"],
+  [
+    "Flutter",
+    "Dart",
+    "Swift",
+    "Kotlin",
+    "C#",
+    "Java",
+    "Angular",
+    "Spring Boot",
+    "MongoDB",
+    "Supabase",
+    "Firebase",
+  ],
+];
+---
+
+<Layout lang={lang}>
+  <section class="hero wrap">
+    <div class="hero-topline">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <span class="micro hero-index">PORTFOLIO / 2026</span>
+    </div>
+    <h1>
+      <span>Miranda</span>
+      <span class="hero-second">
+        DevSource
+        <span class="asterisk" aria-hidden="true">
+          ✳
+        </span>
+      </span>
+    </h1>
+    <div class="hero-bottom">
+      <div class="hero-statement">
+        <h2>
+          {t.headline}
+          <br />
+          {t.headlineEnd}
+        </h2>
+        <p>{t.intro}</p>
+        <div class="hero-actions">
+          <a class="button" href="#contact">
+            {t.cta}
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="text-link" href="#projects">
+            {t.explore}
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-grid"></div>
+        <div class="arch arch-back"></div>
+        <div class="arch arch-front"></div>
+        <div class="art-note">
+          <span>MD / ENGINEERING</span>
+          <span>01—∞</span>
+        </div>
+        <div class="art-caption">{t.discipline}</div>
+      </div>
+    </div>
+    <div class="hero-foot">
+      <span>
+        <i class="status-dot"></i>
+        {t.location}
+      </span>
+      <span>FULL STACK · CONSULTING · PROJECT MANAGEMENT</span>
+      <a href="#services" aria-label={t.nav[0]}>
+        ↓
+      </a>
+    </div>
+  </section>
+  <section class="wrap section" id="services">
+    <p class="eyebrow">{t.servicesLabel}</p>
+    <div class="section-heading">
+      <h2>{t.servicesTitle}</h2>
+      <p>{t.servicesIntro}</p>
+    </div>
+    <div class="services-grid">
+      {t.services.map((s, i) => (
+        <article class:list={["service-card", i === 0 && "featured-service"]}>
+          <div class="service-top">
+            <span class="service-icon" aria-hidden="true">
+              {["↗", "⌘", "▯", "◇", "◎"][i]}
+            </span>
+            <span class="micro">0{i + 1}</span>
+          </div>
+          <h3>{s.name}</h3>
+          <p>{s.description}</p>
+          <span class="service-tags">{s.tags}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="projects-section section" id="projects">
+    <div class="wrap">
+      <p class="eyebrow">{t.projectsLabel}</p>
+      <div class="section-heading">
+        <h2>{t.projectsTitle}</h2>
+        <p>{t.projectsIntro}</p>
+      </div>
+      <div class="projects-grid">
+        {projects.map((project, i) => {
+          const p = project.data[lang];
+          return (
+            <article class:list={["project-card", i === 0 && "wide-project"]}>
+              <a class="project-link" href={`/${lang}/projects/${project.id}/`}>
+                <Diagram
+                  steps={p.steps}
+                  tone={project.data.tone}
+                  label={t.concept}
+                  number={`0${i + 1}`}
+                />
+                <div class="project-meta">
+                  <span class="eyebrow">{p.category}</span>
+                  <span class="micro">{project.data.year}</span>
+                </div>
+                <h3>
+                  {p.title}
+                  <span class="round-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </h3>
+                <p>{p.summary}</p>
+                <span class="text-link case-link">
+                  {t.case}
+                  <span aria-hidden="true">↗</span>
+                </span>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+      <p class="micro confidential">{t.confidential}</p>
+    </div>
+  </section>
+  <section class="wrap section" id="technologies">
+    <p class="eyebrow">{t.stackLabel}</p>
+    <div class="section-heading">
+      <h2>{t.stackTitle}</h2>
+      <p>{t.stackIntro}</p>
+    </div>
+    <div class="stack-list">
+      {stack.map((items, i) => (
+        <div class="stack-row">
+          <h3>{t.stackGroups[i]}</h3>
+          <ul>
+            {items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+  <section class="about-section section" id="about">
+    <div class="wrap about-grid">
+      <div class="about-card">
+        <span class="eyebrow">RAFAEL MIRANDA / ENGINEER</span>
+        <div class="about-monogram" aria-hidden="true">
+          rm<span>↗</span>
+        </div>
+        <span class="micro">MÉRIDA, YUCATÁN</span>
+        <div class="education">
+          <p>{t.education}</p>
+          <span>{t.university}</span>
+        </div>
+        <a class="button light" href={site.cv} download>
+          {t.cv}
+          <span aria-hidden="true">↓</span>
+        </a>
+        <span class="micro">{t.cvNote}</span>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">{t.aboutLabel}</p>
+        <h2>{t.aboutTitle}</h2>
+        <p>{t.aboutText}</p>
+        <p>{t.aboutExtra}</p>
+        <ol class="timeline">
+          {t.timeline.map(([year, title, description]) => (
+            <li>
+              <span class="micro">{year}</span>
+              <div>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <div class="socials">
+          <a class="text-link" href={site.github}>
+            GitHub ↗
+          </a>
+          <a class="text-link" href={site.linkedin}>
+            LinkedIn ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <Contact lang={lang} />
+</Layout>
