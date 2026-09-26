@@ -10,6 +10,10 @@ export function getStaticPaths() {
 }
 const lang = Astro.params.lang as Locale;
 const t = copy[lang];
+const process =
+  lang === "es"
+    ? { idea: "Idea", solution: "Solución", systems: "Sistemas" }
+    : { idea: "Idea", solution: "Solution", systems: "Systems" };
 const projects = (await getCollection("projects")).sort(
   (a, b) => a.data.order - b.data.order,
 );
@@ -67,15 +71,38 @@ const stack = [
           </a>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="art-grid"></div>
-        <div class="arch arch-back"></div>
-        <div class="arch arch-front"></div>
-        <div class="art-note">
-          <span>MD / ENGINEERING</span>
-          <span>01—∞</span>
+      <div class="hero-process" aria-hidden="true">
+        <div class="process-grid"></div>
+        <div class="process-note">
+          <span>MD / PROCESS</span>
+          <span>01—03</span>
         </div>
-        <div class="art-caption">{t.discipline}</div>
+        <div class="process-flow">
+          <div class="process-node process-endpoint">
+            <span class="process-index">01</span>
+            <strong>{process.idea}</strong>
+          </div>
+          <span class="process-connector"><i></i></span>
+          <div class="process-node process-core">
+            <span class="process-mark">
+              <span class="process-letter">M</span>
+              <span class="process-code">&lt;&gt;</span>
+              <i></i>
+            </span>
+            <strong>DevSource</strong>
+          </div>
+          <span class="process-connector"><i></i></span>
+          <div class="process-node process-endpoint">
+            <span class="process-index">03</span>
+            <strong>{process.solution}</strong>
+          </div>
+        </div>
+        <div class="process-branches">
+          <span>WEB</span>
+          <span>{process.systems.toUpperCase()}</span>
+          <span>APPS</span>
+        </div>
+        <div class="process-caption">{t.discipline}</div>
       </div>
     </div>
     <div class="hero-foot">
@@ -216,10 +243,20 @@ const stack = [
           ))}
         </ol>
         <div class="socials">
-          <a class="text-link" href={site.github}>
+          <a
+            class="text-link"
+            href={site.github}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             GitHub ↗
           </a>
-          <a class="text-link" href={site.linkedin}>
+          <a
+            class="text-link"
+            href={site.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             LinkedIn ↗
           </a>
         </div>

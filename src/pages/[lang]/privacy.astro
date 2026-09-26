@@ -2,9 +2,11 @@
 import Layout from "../../layouts/Layout.astro";
 import { locales, site, type Locale } from "../../config";
 import { copy } from "../../i18n";
+
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
 }
+
 const lang = Astro.params.lang as Locale;
 const t = copy[lang];
 ---
@@ -13,75 +15,227 @@ const t = copy[lang];
   <article class="wrap privacy-page">
     <p class="eyebrow">MIRANDA DEVSOURCE</p>
     <h1>{t.privacy}</h1>
+    <p class="privacy-version">
+      {lang === "es"
+        ? "Última actualización: 25 de septiembre de 2026"
+        : "Last updated: September 25, 2026"}
+    </p>
+
     {lang === "es" ? (
       <>
-        <h2>Tu consulta y tus datos</h2>
         <p>
-          Rafael Valentín Miranda Cruz, en Mérida, Yucatán, México, utiliza el
-          nombre, correo, servicio seleccionado y mensaje que compartas para
-          responder a tu consulta y conversar sobre posibles servicios. No
-          envíes contraseñas, información financiera ni datos sensibles.
+          Este aviso explica cómo Rafael Valentín Miranda Cruz, bajo el nombre
+          comercial Miranda DevSource, trata los datos personales relacionados
+          con el uso de mirandadevsource.com y con las consultas sobre sus
+          servicios.
         </p>
-        <h2>Servicios que intervienen</h2>
+
+        <h2>1. Responsable y contacto</h2>
         <p>
-          Cuando el formulario está habilitado, Formspree procesa el envío y lo
-          entrega por correo. El sitio se aloja en Cloudflare, que puede
-          procesar datos técnicos de conexión. Si eliges WhatsApp o correo, tu
-          conversación se gestiona mediante esos servicios y sus propias
-          políticas.
+          El responsable del tratamiento es Rafael Valentín Miranda Cruz, con
+          domicilio de operación en Mérida, Yucatán, México. Para consultas de
+          privacidad o para ejercer tus derechos puedes escribir a <a
+            href={`mailto:${site.email}`}>{site.email}</a
+          >.
         </p>
-        <h2>Preferencias y conservación</h2>
+
+        <h2>2. Datos que podemos tratar</h2>
         <p>
-          Este sitio no incorpora analítica ni publicidad. Guarda localmente tu
-          preferencia de tema; puedes eliminarla borrando los datos del sitio en
-          tu navegador. Las consultas se conservan mientras sean necesarias para
-          atender la conversación y cumplir las obligaciones aplicables.
+          Al contactarnos podemos recibir tu nombre, correo electrónico,
+          servicio de interés, mensaje y cualquier información que decidas
+          proporcionar. Si utilizas correo electrónico o WhatsApp, también se
+          tratarán los datos propios de esos canales. No envíes contraseñas,
+          información financiera ni datos personales sensibles.
         </p>
-        <h2>Contacto y solicitudes</h2>
         <p>
-          Puedes solicitar información, corrección o eliminación de los datos de
-          tu consulta escribiendo al correo indicado abajo. No se usan tus datos
-          para listas de marketing.
+          El sitio y sus proveedores también pueden procesar datos técnicos
+          necesarios para entregar y proteger la página, como dirección IP,
+          fecha y hora de la solicitud, navegador, sistema operativo, página de
+          referencia y registros de seguridad.
+        </p>
+
+        <h2>3. Finalidades</h2>
+        <p>Utilizamos la información únicamente para:</p>
+        <ul>
+          <li>responder consultas y dar seguimiento a posibles servicios;</li>
+          <li>preparar propuestas o una relación profesional solicitada;</li>
+          <li>operar, proteger, diagnosticar y mejorar el sitio; y</li>
+          <li>cumplir obligaciones legales aplicables.</li>
+        </ul>
+        <p>
+          No vendemos tus datos ni los utilizamos para listas de publicidad o
+          marketing no solicitado.
+        </p>
+
+        <h2>4. Proveedores y transferencias</h2>
+        <p>
+          Cloudflare presta servicios de alojamiento, red, seguridad y métricas
+          técnicas agregadas. Cuando el formulario de contacto está habilitado,
+          Formspree procesa el envío y lo entrega por correo. Si eliges contactar
+          por WhatsApp o correo electrónico, esos proveedores tratarán la
+          conversación conforme a sus propias políticas.
+        </p>
+        <p>
+          Estos proveedores pueden procesar información fuera de México. Solo
+          compartimos los datos necesarios para prestar cada servicio o cuando
+          exista una obligación legal.
+        </p>
+
+        <h2>5. Analítica, cookies y almacenamiento local</h2>
+        <p>
+          Utilizamos las métricas de tráfico de Cloudflare para conocer de forma
+          agregada el funcionamiento, seguridad y volumen de uso del sitio. No
+          hemos configurado cookies publicitarias ni herramientas para crear
+          perfiles de seguimiento. Algunas funciones de seguridad de Cloudflare
+          pueden emplear cookies estrictamente necesarias.
+        </p>
+        <p>
+          La preferencia de tema claro u oscuro se guarda mediante almacenamiento
+          local en tu navegador. Puedes eliminarla borrando los datos del sitio.
+        </p>
+
+        <h2>6. Conservación y seguridad</h2>
+        <p>
+          Las consultas se conservan solo durante el tiempo necesario para
+          atenderlas, mantener la relación profesional y cumplir obligaciones
+          legales. Después se eliminan o anonimizan cuando resulte procedente.
+          Aplicamos medidas razonables para proteger la información, aunque
+          ningún sistema conectado a Internet puede garantizar seguridad
+          absoluta.
+        </p>
+
+        <h2>7. Tus derechos</h2>
+        <p>
+          Puedes solicitar acceso, rectificación, cancelación u oposición al
+          tratamiento de tus datos (derechos ARCO), así como limitar su uso o
+          retirar tu consentimiento cuando corresponda. Envía tu solicitud al
+          correo indicado, describiendo el derecho que deseas ejercer y la
+          información necesaria para localizar tu consulta. Podremos pedirte
+          datos razonables para verificar tu identidad.
+        </p>
+
+        <h2>8. Cambios a este aviso</h2>
+        <p>
+          Podemos actualizar este aviso para reflejar cambios legales, técnicos
+          o en los servicios. La versión vigente y su fecha de actualización se
+          publicarán en esta página.
         </p>
       </>
     ) : (
       <>
-        <h2>Your inquiry and your data</h2>
         <p>
-          Rafael Valentín Miranda Cruz, based in Mérida, Yucatán, Mexico, uses
-          the name, email, selected service and message you share to respond to
-          your inquiry and discuss potential services. Do not send passwords,
-          financial information or sensitive data.
+          This notice explains how Rafael Valentín Miranda Cruz, operating under
+          the name Miranda DevSource, processes personal data related to the use
+          of mirandadevsource.com and inquiries about its services.
         </p>
-        <h2>Services involved</h2>
+
+        <h2>1. Controller and contact</h2>
         <p>
-          When the form is enabled, Formspree processes submissions and delivers
-          them by email. The website is hosted on Cloudflare, which may process
-          technical connection data. If you choose WhatsApp or email, those
-          services handle your conversation under their own policies.
+          The data controller is Rafael Valentín Miranda Cruz, operating from
+          Mérida, Yucatán, Mexico. For privacy questions or to exercise your
+          rights, email <a href={`mailto:${site.email}`}>{site.email}</a>.
         </p>
-        <h2>Preferences and retention</h2>
+
+        <h2>2. Data we may process</h2>
         <p>
-          This website has no analytics or advertising. It stores your theme
-          preference locally; you can remove it by clearing site data in your
-          browser. Inquiries are retained for as long as needed to address the
-          conversation and meet applicable obligations.
+          When you contact us, we may receive your name, email address, service
+          of interest, message and any other information you choose to provide.
+          If you use email or WhatsApp, data associated with those channels will
+          also be processed. Do not send passwords, financial information or
+          sensitive personal data.
         </p>
-        <h2>Contact and requests</h2>
         <p>
-          You can request information, correction or deletion of your inquiry
-          data by emailing the address below. Your details are not used for
-          marketing lists.
+          The website and its providers may also process technical data needed
+          to deliver and protect the site, such as IP address, request date and
+          time, browser, operating system, referring page and security logs.
+        </p>
+
+        <h2>3. Purposes</h2>
+        <p>We use information only to:</p>
+        <ul>
+          <li>respond to inquiries and follow up on potential services;</li>
+          <li>prepare proposals or a requested professional relationship;</li>
+          <li>operate, protect, diagnose and improve the website; and</li>
+          <li>meet applicable legal obligations.</li>
+        </ul>
+        <p>
+          We do not sell your data or use it for advertising lists or
+          unsolicited marketing.
+        </p>
+
+        <h2>4. Providers and international processing</h2>
+        <p>
+          Cloudflare provides hosting, networking, security and aggregated
+          technical metrics. When the contact form is enabled, Formspree
+          processes the submission and delivers it by email. If you contact us
+          through WhatsApp or email, those providers process the conversation
+          under their own privacy policies.
+        </p>
+        <p>
+          These providers may process information outside Mexico. We share only
+          the data needed to provide each service or when legally required.
+        </p>
+
+        <h2>5. Analytics, cookies and local storage</h2>
+        <p>
+          We use Cloudflare traffic metrics to understand the website's
+          operation, security and aggregate usage. We have not configured
+          advertising cookies or tools that create tracking profiles. Some
+          Cloudflare security features may use strictly necessary cookies.
+        </p>
+        <p>
+          Your light or dark theme preference is saved in your browser's local
+          storage. You can remove it by clearing this website's stored data.
+        </p>
+
+        <h2>6. Retention and security</h2>
+        <p>
+          Inquiries are kept only as long as needed to address them, maintain a
+          professional relationship and meet legal obligations. They are then
+          deleted or anonymized when appropriate. We use reasonable safeguards,
+          but no Internet-connected system can guarantee absolute security.
+        </p>
+
+        <h2>7. Your rights</h2>
+        <p>
+          You may request access, correction or deletion of your personal data,
+          object to or limit its processing, and withdraw consent where
+          applicable. Email us describing your request and the information
+          needed to locate your inquiry. We may request reasonable information
+          to verify your identity.
+        </p>
+
+        <h2>8. Changes to this notice</h2>
+        <p>
+          We may update this notice to reflect legal, technical or service
+          changes. The current version and its update date will be published on
+          this page.
         </p>
       </>
     )}
-    <a class="text-link" href={`mailto:${site.email}`}>
-      {site.email} ↗
-    </a>
-    <p>
-      <a href="https://formspree.io/legal/privacy-policy/">Formspree</a> ·{" "}
-      <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare</a> ·{" "}
-      <a href="https://www.whatsapp.com/legal/privacy-policy">WhatsApp</a>
-    </p>
+
+    <div class="privacy-contact">
+      <a class="text-link" href={`mailto:${site.email}`}>
+        {site.email} ↗
+      </a>
+      <p>
+        {lang === "es" ? "Políticas de proveedores:" : "Provider policies:"}{" "}
+        <a
+          href="https://formspree.io/legal/privacy-policy/"
+          target="_blank"
+          rel="noopener noreferrer">Formspree</a
+        > ·{" "}
+        <a
+          href="https://www.cloudflare.com/privacypolicy/"
+          target="_blank"
+          rel="noopener noreferrer">Cloudflare</a
+        > ·{" "}
+        <a
+          href="https://www.whatsapp.com/legal/privacy-policy"
+          target="_blank"
+          rel="noopener noreferrer">WhatsApp</a
+        >
+      </p>
+    </div>
   </article>
 </Layout>

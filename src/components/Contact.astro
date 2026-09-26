@@ -15,7 +15,7 @@ const t = copy[lang];
         <a href={`mailto:${site.email}`}>
           {site.email} <span aria-hidden="true">↗</span>
         </a>
-        <a href={whatsapp(lang)}>
+        <a href={whatsapp(lang)} target="_blank" rel="noopener noreferrer">
           {t.wa} <span aria-hidden="true">↗</span>
         </a>
       </div>
@@ -100,7 +100,12 @@ const t = copy[lang];
           <a class="button" href={`mailto:${site.email}`}>
             {t.mail} <span aria-hidden="true">↗</span>
           </a>
-          <a class="button outline" href={whatsapp(lang)}>
+          <a
+            class="button outline"
+            href={whatsapp(lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {t.wa} <span aria-hidden="true">↗</span>
           </a>
           <p class="micro">
