@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import BrandLogo from "../components/BrandLogo.astro";
 import { site, type Locale } from "../config";
 import { copy } from "../i18n";
 interface Props {
@@ -75,12 +76,7 @@ const canonical = new URL(`/${lang}/${path}`, Astro.site);
         href={`/${lang}/`}
         aria-label={`Miranda DevSource — ${lang === "es" ? "Inicio" : "Home"}`}
       >
-        <span class="monogram" aria-hidden="true">
-          m<span>↗</span>
-        </span>
-        <span>
-          miranda<span class="brand-second">devsource</span>
-        </span>
+        <BrandLogo />
       </a>
       <nav
         aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}
@@ -124,8 +120,12 @@ const canonical = new URL(`/${lang}/${path}`, Astro.site);
       <slot />
     </main>
     <footer class="wrap footer">
-      <a class="brand" href={`/${lang}/`}>
-        miranda devsource<span aria-hidden="true">↗</span>
+      <a
+        class="brand footer-brand"
+        href={`/${lang}/`}
+        aria-label={`Miranda DevSource — ${lang === "es" ? "Inicio" : "Home"}`}
+      >
+        <BrandLogo />
       </a>
       <p>{t.footer}</p>
       <div>
