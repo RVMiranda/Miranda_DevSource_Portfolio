@@ -1,0 +1,250 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Contact from "../../components/Contact.astro";
+import { locales, type Locale } from "../../config";
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const text =
+  lang === "es"
+    ? {
+        title: "Desarrollo web en Mérida",
+        description:
+          "Desarrollo de sitios web y sistemas a medida en Mérida, Yucatán. Un proceso claro desde la entrevista y cotización hasta el lanzamiento y mantenimiento.",
+        label: "DESARROLLO WEB / MÉRIDA, YUCATÁN",
+        headline: "De una necesidad clara a una solución que funciona.",
+        intro:
+          "Diseño y desarrollo sitios profesionales, plataformas y sistemas web para negocios que necesitan comunicar mejor, ordenar su operación o convertir una idea en un producto digital.",
+        processLabel: "01 / UN PROCESO VISIBLE",
+        processTitle: "Cada decisión tiene un momento.",
+        processIntro:
+          "El alcance se adapta a cada proyecto, pero la conversación, la validación y la entrega siempre forman parte del proceso.",
+        phases: [
+          {
+            title: "Descubrimiento",
+            summary: "Comprender antes de construir.",
+            steps: [
+              ["Acercamiento inicial", "Conocemos el contexto, la necesidad y el resultado que quieres alcanzar."],
+              ["Entrevista de requerimientos", "Revisamos usuarios, procesos, contenidos, restricciones y prioridades."],
+              ["Definición de requerimientos", "Convertimos la conversación en alcance, funciones y criterios verificables."],
+            ],
+          },
+          {
+            title: "Acuerdo",
+            summary: "Una ruta compartida y sin ambigüedades.",
+            steps: [
+              ["Cotización", "Presento inversión, entregables, tiempos estimados y condiciones de trabajo."],
+              ["Aprobación del cliente", "Validamos el alcance y establecemos el punto de partida del proyecto."],
+            ],
+          },
+          {
+            title: "Construcción",
+            summary: "Avances concretos, visibles y comprobables.",
+            steps: [
+              ["Preparación técnica", "Defino arquitectura, herramientas, datos y entorno de entrega."],
+              ["Desarrollo", "Construyo la solución por etapas priorizando primero el flujo de mayor valor."],
+              ["Reuniones de avance", "Revisamos lo construido, resolvemos dudas y ajustamos decisiones a tiempo."],
+              ["Pruebas", "Verifico comportamiento, dispositivos, accesibilidad, rendimiento y casos críticos."],
+            ],
+          },
+          {
+            title: "Entrega y evolución",
+            summary: "Publicar es el inicio de una nueva etapa.",
+            steps: [
+              ["Presentación del MVP", "Demuestro la versión funcional y reunimos retroalimentación final."],
+              ["Lanzamiento", "Configuramos dominio, despliegue, analítica y los últimos controles de producción."],
+              ["Mantenimiento", "Acordamos soporte, actualizaciones y nuevas mejoras según el uso real."],
+            ],
+          },
+        ],
+        fitLabel: "02 / QUÉ PODEMOS CONSTRUIR",
+        fitTitle: "La tecnología correcta para el objetivo correcto.",
+        fit: [
+          ["Sitios profesionales", "Presencia digital rápida, clara, accesible y preparada para buscadores."],
+          ["Plataformas web", "Flujos con usuarios, paneles, contenidos, pagos o integraciones externas."],
+          ["Sistemas internos", "Herramientas para sustituir hojas dispersas y tareas manuales repetitivas."],
+          ["Mejoras y evolución", "Diagnóstico, nuevas funciones, rendimiento y mantenimiento de productos existentes."],
+        ],
+        principlesLabel: "03 / FORMA DE TRABAJO",
+        principles: ["Comunicación directa", "Alcance documentado", "Avances demostrables", "Código mantenible"],
+        faqLabel: "04 / PREGUNTAS FRECUENTES",
+        faqTitle: "Antes de comenzar.",
+        faq: [
+          ["¿Cuánto tarda un proyecto web?", "Depende del alcance. Después de la entrevista recibirás una estimación basada en entregables y complejidad, no una fecha genérica."],
+          ["¿Puedo solicitar cambios durante el desarrollo?", "Sí. Los revisamos en las reuniones de avance y distinguimos ajustes dentro del alcance de nuevas funciones para proteger tiempos y presupuesto."],
+          ["¿Trabajas solamente en Mérida?", "No. Trabajo desde Mérida con proyectos locales y remotos; las reuniones, revisiones y entregas pueden realizarse en línea."],
+          ["¿Qué sucede después del lanzamiento?", "Podemos acordar mantenimiento, monitoreo, correcciones y una ruta de mejoras según las necesidades del proyecto."],
+        ],
+      }
+    : {
+        title: "Web development in Mérida",
+        description:
+          "Custom websites and web systems developed in Mérida, Yucatán through a clear process from discovery and quotation to launch and maintenance.",
+        label: "WEB DEVELOPMENT / MÉRIDA, YUCATÁN",
+        headline: "From a clear need to a solution that works.",
+        intro:
+          "I design and build professional websites, platforms and web systems for organizations that need to communicate better, organize their operation or turn an idea into a digital product.",
+        processLabel: "01 / A VISIBLE PROCESS",
+        processTitle: "Every decision has its moment.",
+        processIntro:
+          "Scope changes with every project, but conversation, validation and delivery remain part of the process.",
+        phases: [
+          {
+            title: "Discovery",
+            summary: "Understand before building.",
+            steps: [
+              ["Initial conversation", "We discuss the context, the need and the outcome you want to achieve."],
+              ["Requirements interview", "We review users, processes, content, constraints and priorities."],
+              ["Requirements definition", "We turn the conversation into scope, features and verifiable criteria."],
+            ],
+          },
+          {
+            title: "Agreement",
+            summary: "A shared roadmap without ambiguity.",
+            steps: [
+              ["Quotation", "I present the investment, deliverables, estimated timing and working terms."],
+              ["Client approval", "We validate the scope and establish the project's starting point."],
+            ],
+          },
+          {
+            title: "Construction",
+            summary: "Concrete, visible and testable progress.",
+            steps: [
+              ["Technical preparation", "I define the architecture, tools, data and delivery environment."],
+              ["Development", "I build in stages, prioritizing the highest-value workflow first."],
+              ["Progress meetings", "We review what is built, resolve questions and adjust decisions early."],
+              ["Testing", "I verify behavior, devices, accessibility, performance and critical cases."],
+            ],
+          },
+          {
+            title: "Delivery and evolution",
+            summary: "Publishing begins a new stage.",
+            steps: [
+              ["MVP presentation", "I demonstrate the working version and gather final feedback."],
+              ["Launch", "We configure the domain, deployment, analytics and final production checks."],
+              ["Maintenance", "We agree on support, updates and improvements informed by real usage."],
+            ],
+          },
+        ],
+        fitLabel: "02 / WHAT WE CAN BUILD",
+        fitTitle: "The right technology for the right objective.",
+        fit: [
+          ["Professional websites", "A fast, clear, accessible and search-ready digital presence."],
+          ["Web platforms", "User flows, dashboards, content, payments or external integrations."],
+          ["Internal systems", "Tools that replace scattered spreadsheets and repetitive manual work."],
+          ["Product evolution", "Diagnosis, new features, performance and maintenance for existing products."],
+        ],
+        principlesLabel: "03 / HOW I WORK",
+        principles: ["Direct communication", "Documented scope", "Demonstrable progress", "Maintainable code"],
+        faqLabel: "04 / FREQUENTLY ASKED QUESTIONS",
+        faqTitle: "Before we begin.",
+        faq: [
+          ["How long does a web project take?", "It depends on scope. After discovery, you receive an estimate based on deliverables and complexity rather than a generic deadline."],
+          ["Can I request changes during development?", "Yes. We review them in progress meetings and separate in-scope refinements from new features to protect timing and budget."],
+          ["Do you only work in Mérida?", "No. I work from Mérida with local and remote projects; meetings, reviews and delivery can happen online."],
+          ["What happens after launch?", "We can arrange maintenance, monitoring, corrections and a roadmap for future improvements."],
+        ],
+      };
+---
+
+<Layout
+  lang={lang}
+  title={text.title}
+  description={text.description}
+  path="desarrollo-web-merida/"
+>
+  <article class="service-page">
+    <header class="wrap editorial-hero service-hero">
+      <p class="eyebrow">{text.label}</p>
+      <h1>{text.headline}</h1>
+      <p class="lede">{text.intro}</p>
+      <a class="button" href="#contact">
+        {lang === "es" ? "Cuéntame tu proyecto" : "Tell me about your project"}
+        <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <section class="process-section section">
+      <div class="wrap">
+        <p class="eyebrow">{text.processLabel}</p>
+        <div class="section-heading">
+          <h2>{text.processTitle}</h2>
+          <p>{text.processIntro}</p>
+        </div>
+        <ol class="delivery-process">
+          {text.phases.map((phase, phaseIndex) => (
+            <li class="delivery-phase">
+              <div class="phase-heading">
+                <span class="phase-number">0{phaseIndex + 1}</span>
+                <h3>{phase.title}</h3>
+                <p>{phase.summary}</p>
+              </div>
+              <ol>
+                {phase.steps.map(([name, detail], stepIndex) => (
+                  <li>
+                    <span class="micro">
+                      {String(
+                        text.phases
+                          .slice(0, phaseIndex)
+                          .reduce((total, item) => total + item.steps.length, 0) +
+                          stepIndex +
+                          1,
+                      ).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h4>{name}</h4>
+                      <p>{detail}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <p class="eyebrow">{text.fitLabel}</p>
+      <h2 class="standalone-title">{text.fitTitle}</h2>
+      <div class="solution-grid">
+        {text.fit.map(([title, description], index) => (
+          <article>
+            <span class="micro">0{index + 1}</span>
+            <h3>{title}</h3>
+            <p>{description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="principles-band">
+      <div class="wrap">
+        <p class="eyebrow">{text.principlesLabel}</p>
+        <ul>
+          {text.principles.map((principle, index) => (
+            <li><span>0{index + 1}</span>{principle}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="wrap section faq-section">
+      <p class="eyebrow">{text.faqLabel}</p>
+      <h2 class="standalone-title">{text.faqTitle}</h2>
+      <div class="faq-list">
+        {text.faq.map(([question, answer]) => (
+          <details>
+            <summary>{question}<span aria-hidden="true">＋</span></summary>
+            <p>{answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <Contact lang={lang} />
+  </article>
+</Layout>

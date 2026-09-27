@@ -19,6 +19,11 @@ const {
 } = Astro.props;
 const t = copy[lang];
 const canonical = new URL(`/${lang}/${path}`, Astro.site);
+const navHrefs = [
+  `/${lang}/#services`,
+  `/${lang}/proyectos/`,
+  `/${lang}/#about`,
+];
 const pageTitle =
   title === site.name
     ? `${site.name} — ${lang === "es" ? "Desarrollo de software" : "Software development"}`
@@ -135,7 +140,7 @@ const structuredData =
         aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}
       >
         {t.nav.slice(0, 3).map((label, i) => (
-          <a href={`/${lang}/#${["services", "projects", "about"][i]}`}>
+          <a href={navHrefs[i]}>
             {label}
           </a>
         ))}
