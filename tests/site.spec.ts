@@ -7,6 +7,8 @@ test("case studies, privacy and static assets are reachable", async ({
 }) => {
   for (const lang of ["es", "en"]) {
     for (const path of [
+      "desarrollo-web-merida/",
+      "proyectos/",
       "projects/operations/",
       "projects/school/",
       "projects/producers/",
@@ -31,6 +33,26 @@ test("case studies, privacy and static assets are reachable", async ({
     "/sitemap-index.xml",
   ])
     expect((await request.get(path)).ok()).toBeTruthy();
+});
+
+test("service process and project archive expose complete, localized content", async ({
+  page,
+}) => {
+  for (const lang of ["es", "en"]) {
+    await page.goto(`/${lang}/desarrollo-web-merida/`);
+    await expect(page.locator(".delivery-phase")).toHaveCount(4);
+    await expect(page.locator(".delivery-phase > ol > li")).toHaveCount(12);
+    await expect(page.locator(".faq-list details")).toHaveCount(4);
+
+    await page.goto(`/${lang}/proyectos/`);
+    await expect(page.locator(".archive-card")).toHaveCount(8);
+    const repositoryLinks = page.locator('.archive-card a[href^="https://github.com/"]');
+    expect(await repositoryLinks.count()).toBeGreaterThanOrEqual(8);
+    for (const link of await repositoryLinks.all()) {
+      await expect(link).toHaveAttribute("target", "_blank");
+      await expect(link).toHaveAttribute("rel", /noopener/);
+    }
+  }
 });
 
 test("large text and blocked storage keep navigation usable", async ({

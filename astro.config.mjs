@@ -2,14 +2,16 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import { existsSync } from "node:fs";
 if (existsSync(".env")) process.loadEnvFile(".env");
+const siteUrl = process.env.PUBLIC_SITE_URL || "https://mirandadevsource.com";
 export default defineConfig({
-  site: process.env.PUBLIC_SITE_URL || "https://mirandadevsource.com",
+  site: siteUrl,
   output: "static",
   trailingSlash: "always",
   integrations: [
     sitemap({
-      filter: (page) => !page.endsWith("/404/"),
-      i18n: { defaultLocale: "es", locales: { es: "es-MX", en: "en" } },
+      // The root permanently redirects to /es/, so only final canonical URLs
+      // belong in the sitemap. Language alternates live in each page's head.
+      filter: (page) => page !== `${siteUrl}/` && !page.endsWith("/404/"),
     }),
   ],
 });

@@ -19,6 +19,47 @@ const {
 } = Astro.props;
 const t = copy[lang];
 const canonical = new URL(`/${lang}/${path}`, Astro.site);
+const navHrefs = [
+  `/${lang}/#services`,
+  `/${lang}/proyectos/`,
+  `/${lang}/#about`,
+];
+const pageTitle =
+  title === site.name
+    ? `${site.name} — ${lang === "es" ? "Desarrollo de software" : "Software development"}`
+    : `${title} | ${site.name}`;
+const structuredData =
+  path === ""
+    ? [
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: site.name,
+          url: new URL(`/${lang}/`, Astro.site),
+          inLanguage: lang === "es" ? "es-MX" : "en",
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: "Rafael Valentín Miranda Cruz",
+          alternateName: site.name,
+          url: new URL(`/${lang}/`, Astro.site),
+          jobTitle:
+            lang === "es"
+              ? "Ingeniero en Desarrollo de Tecnología y Software"
+              : "Technology and Software Development Engineer",
+          knowsAbout: [
+            "Software development",
+            "Full-stack development",
+            "Web development",
+            "Mobile applications",
+            "Technical consulting",
+            "Project management",
+          ],
+          sameAs: [site.github, site.linkedin],
+        },
+      ]
+    : null;
 ---
 
 <!doctype html>
@@ -26,12 +67,13 @@ const canonical = new URL(`/${lang}/${path}`, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title === site.name ? `${site.name} — ${lang === 'es' ? 'Desarrollo de software' : 'Software development'}` : `${title} | ${site.name}`}</title>
+    <title>{pageTitle}</title>
     <meta name="description" content={description} />
     {noindex ? (
       <meta name="robots" content="noindex" />
     ) : (
       <>
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href={canonical} />
         {(["es", "en"] as const).map((l) => (
           <link
@@ -49,18 +91,31 @@ const canonical = new URL(`/${lang}/${path}`, Astro.site);
     )}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content={lang === "es" ? "es_MX" : "en_US"} />
+    <meta
+      property="og:locale:alternate"
+      content={lang === "es" ? "en_US" : "es_MX"}
+    />
     <meta property="og:image" content={new URL("/social_web.jpg", Astro.site)} />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="610" />
     <meta property="og:image:height" content="470" />
     <meta property="og:image:alt" content="Miranda DevSource" />
     <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL("/social_web.jpg", Astro.site)} />
     <meta name="twitter:image:alt" content="Miranda DevSource" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    {structuredData && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(structuredData)}
+      />
+    )}
     <script is:inline>
       try {
         const t = localStorage.getItem("theme");
@@ -85,7 +140,7 @@ const canonical = new URL(`/${lang}/${path}`, Astro.site);
         aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}
       >
         {t.nav.slice(0, 3).map((label, i) => (
-          <a href={`/${lang}/#${["services", "projects", "about"][i]}`}>
+          <a href={navHrefs[i]}>
             {label}
           </a>
         ))}
