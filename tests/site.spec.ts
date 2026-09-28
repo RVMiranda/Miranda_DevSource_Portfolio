@@ -9,6 +9,7 @@ test("case studies, privacy and static assets are reachable", async ({
     for (const path of [
       "desarrollo-web-merida/",
       "proyectos/",
+      "promociones/",
       "projects/operations/",
       "projects/school/",
       "projects/producers/",
@@ -33,6 +34,22 @@ test("case studies, privacy and static assets are reachable", async ({
     "/sitemap-index.xml",
   ])
     expect((await request.get(path)).ok()).toBeTruthy();
+});
+
+test("promotion page communicates offers and links from the homepage", async ({
+  page,
+}) => {
+  for (const lang of ["es", "en"]) {
+    await page.goto(`/${lang}/`);
+    const banner = page.locator(".launch-banner");
+    await expect(banner).toBeVisible();
+    await banner.locator("a").click();
+    await expect(page).toHaveURL(`/${lang}/promociones/`);
+    await expect(page.locator(".offer-card")).toHaveCount(2);
+    await expect(page.locator(".promotion-seal")).toContainText("20%");
+    await expect(page.locator(".payment-band")).toContainText("6");
+    await expect(page.locator(".promotion-benefits article")).toHaveCount(4);
+  }
 });
 
 test("service process and project archive expose complete, localized content", async ({

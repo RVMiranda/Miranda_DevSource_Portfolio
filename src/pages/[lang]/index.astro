@@ -116,6 +116,24 @@ const stack = [
       </a>
     </div>
   </section>
+  <aside class="launch-banner" aria-labelledby="launch-offer-title">
+    <a class="wrap launch-banner-inner" href={`/${lang}/promociones/`}>
+      <div>
+        <p class="eyebrow">{lang === "es" ? "OFERTA DE LANZAMIENTO" : "LAUNCH OFFER"}</p>
+        <h2 id="launch-offer-title">
+          {lang === "es" ? "20% de descuento en landing pages." : "20% off landing pages."}
+        </h2>
+      </div>
+      <p>
+        {lang === "es"
+          ? "Hosting y dominio incluidos por un año · Cotización sin costo"
+          : "Hosting and domain included for one year · Free quote"}
+      </p>
+      <span class="banner-action">
+        {lang === "es" ? "Ver promociones" : "View offers"}<i aria-hidden="true">↗</i>
+      </span>
+    </a>
+  </aside>
   <section class="wrap section" id="services">
     <p class="eyebrow">{t.servicesLabel}</p>
     <div class="section-heading">
