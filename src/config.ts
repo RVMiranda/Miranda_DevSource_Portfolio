@@ -1,6 +1,7 @@
 export const site = {
   name: "Miranda DevSource",
-  email: "rv.miranda.builds@gmail.com",
+  email: "contacto@mirandadevsource.com",
+  alternativeEmail: "rv.miranda.builds@gmail.com",
   phone: "+52 998 601 7858",
   github: "https://github.com/RVMiranda",
   linkedin: "https://www.linkedin.com/in/rafael-miranda-cruz-243120384",

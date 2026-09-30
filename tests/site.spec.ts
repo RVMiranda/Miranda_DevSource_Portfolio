@@ -162,7 +162,7 @@ test("fallback provides genuine contact links without endpoint", async ({
   await expect(page.locator("[data-contact]")).toHaveCount(0);
   await expect(
     page.locator('.direct-contact a[href^="mailto:"]'),
-  ).toBeVisible();
+  ).toHaveCount(2);
   await expect(
     page.locator('.direct-contact a[href^="https://wa.me/"]'),
   ).toBeVisible();

@@ -1007,6 +1007,19 @@
     border-bottom: 1px solid var(--line);
     font-size: 0.9rem;
   }
+  .contact-links a > span:first-child {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .contact-links small {
+    margin-bottom: 0.1rem;
+    color: var(--muted);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+  }
   .contact-panel {
     background: var(--surface);
     padding: 2rem;

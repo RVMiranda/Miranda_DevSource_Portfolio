@@ -13,7 +13,12 @@ const t = copy[lang];
       <p class="lede">{t.contactIntro}</p>
       <div class="contact-links">
         <a href={`mailto:${site.email}`}>
-          {site.email} <span aria-hidden="true">↗</span>
+          <span><small>{t.primaryEmail}</small>{site.email}</span>
+          <span aria-hidden="true">↗</span>
+        </a>
+        <a href={`mailto:${site.alternativeEmail}`}>
+          <span><small>{t.alternativeEmail}</small>{site.alternativeEmail}</span>
+          <span aria-hidden="true">↗</span>
         </a>
         <a href={whatsapp(lang)} target="_blank" rel="noopener noreferrer">
           {t.wa} <span aria-hidden="true">↗</span>
@@ -99,6 +104,9 @@ const t = copy[lang];
           <h3>{t.direct}</h3>
           <a class="button" href={`mailto:${site.email}`}>
             {t.mail} <span aria-hidden="true">↗</span>
+          </a>
+          <a class="button outline" href={`mailto:${site.alternativeEmail}`}>
+            {t.alternativeMail} <span aria-hidden="true">↗</span>
           </a>
           <a
             class="button outline"
