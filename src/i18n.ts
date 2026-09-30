@@ -97,6 +97,9 @@ const es = {
   contactIntro:
     "Cuéntame qué quieres construir o qué proceso te gustaría mejorar. Encontraremos un buen punto de partida.",
   mail: "Escríbeme por correo",
+  alternativeMail: "Usar correo alternativo",
+  primaryEmail: "Correo principal",
+  alternativeEmail: "Correo alternativo",
   wa: "Conversar por WhatsApp",
   name: "Tu nombre",
   email: "Tu correo",
@@ -224,6 +227,9 @@ const en: Dictionary = {
   contactIntro:
     "Tell me what you want to build or which process you’d like to improve. We’ll find a good place to start.",
   mail: "Email me",
+  alternativeMail: "Use alternative email",
+  primaryEmail: "Primary email",
+  alternativeEmail: "Alternative email",
   wa: "Chat on WhatsApp",
   name: "Your name",
   email: "Your email",
